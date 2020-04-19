@@ -1,0 +1,32 @@
+{
+    "name": "raa",
+    "version": "1.0.0",
+    "license": "MIT",
+    "browserslist": [
+        "last 2 Chrome versions"
+    ],
+    "scripts": {
+        "watch-client": "parcel watch --hmr-hostname raa.mamble.us ./sources/client/index.html",
+        "watch-server": "tsc -w -p ./sources/server",
+        "start": "node ./output/server"
+    },
+    "dependencies": {
+        "mysql": "2.18.1",
+        "typedi": "0.8.0",
+        "express": "4.17.1",
+        "body-parser": "1.19.0",
+        "multer": "1.4.2",
+        "jwt-simple": "0.5.6",
+        "reflect-metadata": "0.1.13",
+        "routing-controllers": "0.8.1-alpha.2",
+        "class-transformer": "0.2.3",
+        "class-validator": "0.10.1"
+    },
+    "devDependencies": {
+        "@types/express": "4.17.4",
+        "@types/body-parser": "1.19.0",
+        "@types/multer": "1.4.2",
+        "@types/mysql": "2.15.9",
+        "typescript": "3.8.3"
+    }
+}
