@@ -1,7 +1,9 @@
 #notes
 
-`sudo systemctl restart nginx`
-`sudo npm install -g parcel-bundler`
+```
+sudo systemctl restart nginx
+sudo npm install -g parcel-bundler
+```
 
 #info
 
