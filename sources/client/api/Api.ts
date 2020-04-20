@@ -2,7 +2,15 @@ export interface Credentials {
     username: string,
     password: string
 }
-
+export interface JourneyInit{
+    title: string,
+    description: string
+}
+export interface Journey {
+    id: string,
+    title: string,
+    description: string
+}
 
 export class Api {
     url?: URL;
@@ -17,6 +25,8 @@ export class Api {
 
     constructor(url?: URL) {
         this.url = url || new URL(window.location.origin);
+        //this.url = url || new URL("http://localhost:3000");
+
         this.headers = {
             'Content-Type': "application/json"
         };
@@ -54,5 +64,8 @@ export class Api {
     }
     async getJourneys(){
         return await this.request("GET", '/journeys');
+    }
+    async addJourney(journey:JourneyInit):Promise<Journey>{
+        return {id: "asb", ...journey}
     }
 }

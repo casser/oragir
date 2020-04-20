@@ -4,8 +4,8 @@ import { Service } from "typedi";
 export class ConfigService {
     dbPort = 3306;
     dbHost = 'localhost';
-    dbName = 'raa';
-    dbUsername = 'sergey';
-    dbPassword = 'raamypa$5';
+    dbName = 'oragir';
+    dbUsername = 'raa';
+    dbPassword = 'raa';
     apiSecret = 'server_$ecret:here';
 }

@@ -3,8 +3,9 @@ import * as express from "express";
 import { createExpressServer } from "routing-controllers";
 import { Action } from "routing-controllers";
 import { useContainer } from "routing-controllers";
-import { UserController } from "./controllers/UserController";
 import { Container } from "typedi";
+
+import { UserController } from "./controllers/UserController";
 import { AuthService } from "./services/AuthService";
 import { DbService } from "./services/DbService";
 import { JourneyController } from "./controllers/JourneyController";
