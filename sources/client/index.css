@@ -44,3 +44,11 @@ dialog > main > * {
 dialog > footer {
     justify-content: center;
 }
+.menublock{
+    display:inline-block;
+    float:left;
+}
+.pagecontent{
+    width: 100%;
+    top:50px;
+}

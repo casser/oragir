@@ -2,16 +2,33 @@ export interface Credentials {
     username: string,
     password: string
 }
+// for input form of new journey
 export interface JourneyInit{
     title: string,
-    description: string
+    start_day: Date,
+    description: string,
+    country: string,
+    group_head: string,
+    members?: Array<Member>
 }
+// for search result and editing form of journey
 export interface Journey {
     id: string,
     title: string,
-    description: string
+    start_day: Date,
+    end_day?: Date,
+    description: string,
+    country: string,
+    group_head: string,
+    members?: Array<Member>
 }
-
+// Journey menbers (authors of Photo/Video)
+export interface Member{
+    member:string,
+    photocamera?:Array<string>,
+    videocamera?:Array<string>
+}
+// settings : new user registration/edit form, members list, cameras list, ....other settings
 export class Api {
     url?: URL;
     headers: any;
