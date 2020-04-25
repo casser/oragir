@@ -6,6 +6,7 @@ export interface Credentials {
 export interface JourneyInit{
     title: string,
     start_day: Date,
+    name: string,
     description: string,
     country: string,
     group_head: string,
@@ -17,6 +18,7 @@ export interface Journey {
     title: string,
     start_day: Date,
     end_day?: Date,
+    name: string,
     description: string,
     country: string,
     group_head: string,
@@ -24,9 +26,21 @@ export interface Journey {
 }
 // Journey menbers (authors of Photo/Video)
 export interface Member{
-    member:string,
-    photocamera?:Array<string>,
-    videocamera?:Array<string>
+    id?: string|number,
+    member: string,
+    photocamera?: Array<Camera>,
+    videocamera?: Array<Camera>
+}
+// VideoCamera
+export interface Camera{
+    name:string,
+    photo:boolean,
+    video:boolean,
+    model:string,
+    owner?: string,
+    date_creation_tag?: string,
+    tags_photo?: string[];
+    tags_video?: string[];
 }
 // settings : new user registration/edit form, members list, cameras list, ....other settings
 export class Api {
