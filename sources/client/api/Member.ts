@@ -1,10 +1,12 @@
 import {Member, Camera} from "./Api";
 /*
 export interface Member{
-    member:string,
-    photocamera?:Array<string>,
-    videocamera?:Array<string>
+    id?: string,
+    member: string, // unique
+    photocamera?: Array<Camera>,
+    videocamera?: Array<Camera>
 }
+
 export interface Camera{
     name:string,
     photo:boolean,
@@ -15,44 +17,51 @@ export interface Camera{
     tags: string[];
 }
 */
-export class JMembers{
-    parent_container: HTMLDivElement;
-    membersList:string[];  // from database
-    photoCameraList:string[];// from database
-    videoCameraList:string[];// from database
-    members:Member[];// ... array of memners according to interface Member
-    memberSelectElm : HTMLSelectElement;
-    photoCameraSelectElm : HTMLSelectElement;
-    videoCameraSelectElm : HTMLSelectElement;
-    current_index:number;
+export class JMember{
+    parent_container: HTMLElement;  //? user for making view of one instance
+    member:Member;                  // from database.tbl_members
+    cameraList:Camera[];       // to insert into tbl_jorn_mem_cam
+    journ_id:number;                // tbl_jorney.jorn_id - after inserting into tbl_jorney
+    
     // form
     membersBlock : HTMLDivElement;
     membersFormTable : HTMLTableElement;
 
-    constructor(membersList:string[]=["Արմեն", "Աշոտ", "Րաֆֆի", "Սասուն", "Անուշ"], 
-                photoCameraList:string[]=["Nikon D 700", "Nikon D 5500", "Nikon D 750", "Nikon CoolPix 600", "Redmi tel"], 
-                videoCameraList:string[]=["Nikon D 5500", "Nikon D 750", "Nikon CoolPix 600", "Redmi tel", "Sony camera"]){
-        this.current_index = 0;
-        this.attachPhotoCameras = this.attachPhotoCameras.bind(this);
-        this.attachVideoCameras = this.attachVideoCameras.bind(this);
-        this.membersList = membersList;
-        this.photoCameraList = photoCameraList;
-        this.videoCameraList = videoCameraList;
-        for(let i=0; i<membersList.length; i++){
-            this.members[i] = {member: membersList[i]};
-        }
+    constructor(member:Member, 
+                journ_id:number,
+                cameraList:Camera[],
+                parent_container: HTMLElement){
+        this.attachCameras = this.attachCameras.bind(this);
+        this.member = member;
+        this.journ_id = journ_id;
+        this.cameraList = cameraList;
+        this.parent_container = parent_container;
     }
-
-    attachPhotoCameras(currentIndex:number, aPhotoCamera:string[]){
+    //
+    attachCameras(camera:Camera){
+       // checking if the same camera is available
        // adding videoCamera to 
-       if(aPhotoCamera.length>0){
-           for(let i=0; i<aPhotoCamera.length; i++){
-            //this.members[currentIndex].photocamera = aPhotoCamera[i];
+       let aNames:string[] = [];
+       if(this.cameraList.length>0){
+           for(let i=0; i<this.cameraList.length; i++){
+            aNames.push(this.cameraList[i].name);
            }
        }
-
+       if(aNames.includes(camera.name)){
+           console.info("The same camera is allready attached");
+       }
+       else{
+        this.cameraList.push(camera);
+       }
     }
-    attachVideoCameras(){
-        
+    //
+    removeCamera(camera:Camera){
+       this.cameraList = this.cameraList.filter(obj => obj !== camera);
+    }
+    //
+    preview(){
+        // here code to make a table wih one row and columns
+        // member name, cmera_name(s) (vid|Photo), this journey name
+
     }
 }

@@ -55,7 +55,44 @@ dialog > footer {
     top:50px;
 }
 .submenu_active{
+    font-size: 14px;
     font-family: monospace;
-    font-size: 16px;
+    letter-spacing: 0.5em;
+    padding-bottom: 4px;
+}
+.submenu_button{
+    font-family: monospace;
+    font-weight: bolder;
     letter-spacing: 0.3em;
+
+    font-size: 14px;
+    margin-left: 6px;
+    margin-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.w100{
+    width:100px;
+}
+.threshold:after {
+    content: "\00b0";
+}
+.minSymbol:after {
+    content: "\00b4";
+}
+.secSymbol:after {
+    content: "\02dd";
+}
+.msInput{
+    width: 140px;
+    display: inline;
+}
+.DMS_cell{
+    min-width:180px;
+}
+.NS_cell{
+    min-width:36px;
+}
+.inlineInput{
+    display:inline-flex;
 }

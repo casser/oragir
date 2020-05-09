@@ -19,6 +19,7 @@ async function start() {
     // bootstrap 
     await db.connect();
     console.info(await db.query('SELECT 1'))
+    console.info(await db.query('SELECT * FROM tbl_user')) // ok
     // configure dependecy injection 
     useContainer(Container);
     // initialize server and controllers 

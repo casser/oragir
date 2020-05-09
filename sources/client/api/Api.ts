@@ -2,6 +2,11 @@ export interface Credentials {
     username: string,
     password: string
 }
+// 
+export interface Geopoint {
+    lat: number,
+    lon: number
+}
 // for input form of new journey
 export interface JourneyInit{
     title: string,
@@ -24,9 +29,44 @@ export interface Journey {
     group_head: string,
     members?: Array<Member>
 }
+export interface NoteShort{
+    id:string,
+    journey_id: string,
+    start_date_time: Date,
+    end_date_time: Date,
+    short_description: string
+}
+// NoteInit, Note
+export interface NoteInit{
+    journey_id: string,
+    start_date_time: Date,
+    end_date_time?: Date,
+    region?: string,
+    district?: string,
+    settlement?: string,
+    type?: string,
+    name?: string,
+    latitude?: number,
+    longitude?: number,
+    description?: string
+}
+export interface Note{
+    note_id:string,
+    journey_id: string,
+    start_date_time: Date,
+    end_date_time?: Date,
+    region?: string,
+    district?: string,
+    settlement?: string,
+    type?: string,
+    name?: string,
+    latitude?: number,
+    longitude?: number,
+    description?: string
+}
 // Journey menbers (authors of Photo/Video)
 export interface Member{
-    id?: string|number,
+    id?: string,
     member: string,
     photocamera?: Array<Camera>,
     videocamera?: Array<Camera>
