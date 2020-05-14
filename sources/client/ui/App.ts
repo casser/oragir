@@ -1,5 +1,6 @@
 import { Api, Credentials} from "../api/Api";
-import {Menu} from "../api/Menu";
+import {Menu} from "./views/Menu";
+import {JourneyPage} from "./views/JourneyPage";
 
 export class App {
     api: Api;
@@ -49,6 +50,7 @@ class MainView {
     userRoleDiv:HTMLDivElement;
     logoutButton:HTMLButtonElement;
     menu:Menu;
+    page:JourneyPage;
 
     onLogout: () => void;
     constructor() {
@@ -57,7 +59,8 @@ class MainView {
         this.userNameDiv = document.getElementById('userNameDiv') as HTMLDivElement;
         this.userRoleDiv = document.getElementById('userRoleDiv') as HTMLDivElement;
         this.logoutButton = document.getElementById('logoutButton') as HTMLButtonElement;
-        this.menu = new Menu(this.element, 0);
+        //this.menu = new Menu(this.element, 0);
+        this.page = new JourneyPage(this.element) as JourneyPage;
         this.logoutButton.addEventListener('click', () => {
             this.onLogout();
         })
@@ -75,8 +78,6 @@ class MainView {
         this.element.style.display = "";
     }
 }
-//
-
 //
 
 //

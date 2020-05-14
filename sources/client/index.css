@@ -96,3 +96,13 @@ dialog > footer {
 .inlineInput{
     display:inline-flex;
 }
+.tableDiv{
+    display:table;
+}
+.rowDiv{
+    display:table-row;
+}
+.rowCell{
+    display:table-cell;
+    padding:2px;
+}

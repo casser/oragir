@@ -14,4 +14,9 @@ export class JourneyController {
    async getAll() {
       return this.journeys.findJourneys();
    }
+   @Post("/journeys")
+   @Authorized()
+   async addJourney(@Body() journewNew, @CurrentUser() currentUser){
+      return this.journeys.addJourney(journewNew, currentUser);
+   }
 }

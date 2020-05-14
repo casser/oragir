@@ -8,6 +8,23 @@ export interface Geopoint {
     lon: number
 }
 // for input form of new journey
+/*
+{
+    "jorn_id":"6",
+    "j_name":"Արևմտյան Հայաստան 2010",
+    "country":"Թուրքիա",
+    "date_from":"2010-10-20",
+    "date_to":null,
+    "ph_author":"Սամվել Կարապետյան",
+    "notes":"20.10.2010. Վաղ առավոտյան 16 անդամներից բաղկացած մեր խումբը ճանապարհվեց դեպի Արևմտյան Հայաստան: Սահմանն անցանք բարեհաջող և սովորականի նման գիշերեցինք Արդահանի անտառում:"},
+{
+*/
+export interface JourneyShort{
+    id: string,
+    start_day: Date,
+    end_day?: Date,
+    name: string,
+}
 export interface JourneyInit{
     title: string,
     start_day: Date,
@@ -137,6 +154,6 @@ export class Api {
         return await this.request("GET", '/journeys');
     }
     async addJourney(journey:JourneyInit):Promise<Journey>{
-        return {id: "asb", ...journey}
+        return await this.request("POST", '/journeys', null, journey);     
     }
 }
