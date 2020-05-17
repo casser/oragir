@@ -1,14 +1,17 @@
 
 import {Menu}  from "./Menu";
-import {JourneyList} from "./JourneyList";  // class
+import {JourneyList, JourneyListTitle} from "./JourneyList";  // class
 import {Journey} from "./JourneyList";  // interface
 import {convertJsonToJourney} from "./JourneyList";  //  function
 import {jListArr} from "./JourneyList";  // Json Array
+//
 //
 export class JourneyPage{
     parentContainer:HTMLElement;
     mainContainer:HTMLElement;
     headerContainer:HTMLDivElement;
+    tileContainer:HTMLDivElement;
+    listTitle:JourneyListTitle;
     contentContainer:HTMLDivElement;
     footerContainer:HTMLDivElement;
     menu:Menu;
@@ -18,6 +21,11 @@ export class JourneyPage{
         this.parentContainer = parent;
         this.mainContainer = document.createElement('div');
         this.headerContainer = document.createElement('div');
+        this.tileContainer = document.createElement('div');
+        this.tileContainer.setAttribute("class", "w3-container  menublock");
+        //
+        this.listTitle=new JourneyListTitle(this.tileContainer);
+        //this.tileContainer.innerHTML="title";
         this.parentContainer.appendChild(this.mainContainer);
         this.mainContainer.appendChild(this.headerContainer)
         this.menu = new Menu(this.headerContainer,0) as Menu;
@@ -29,6 +37,7 @@ export class JourneyPage{
         this.footerContainer.setAttribute("class", "w3-bar w3-light-gray w3-card-2 menublock");
         this.footerContainer.innerHTML="Footer RAA";
 
+        this.mainContainer.appendChild(this.tileContainer);
         this.mainContainer.appendChild(this.contentContainer);
         this.mainContainer.appendChild(this.footerContainer);
 

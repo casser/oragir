@@ -79,14 +79,15 @@ export class newJourneyForm{
         
         this.parent_container = parent_container as HTMLDivElement;
         this.form = document.createElement("form");
-        this.form.setAttribute("class", "w3-container w3-card-2 w3-border w3-light-grey");
+        this.form.setAttribute("class", "w3-container w3-light-grey w3-margin-top w3-margin-bottom");
         this.parent_container.appendChild(this.form);
- 
+ /*
         this.subtitleNewJourn = new subTitle(this.form,
             "ՆՈՐ ՃԱՄՓՈՐԴՈՒԹՅՈՒՆ",
             "w3-text-green w3-border-bottom w3-border-green submenu_active",
              "subtitleNewJourn_id"
             )
+            */
         //
         this.dateInputBlock = new inputBlock(
             this.form,
@@ -127,7 +128,7 @@ export class newJourneyForm{
         this.form.appendChild(this.membersBlock);
 
         this.subtitleNewMember = new subTitle(this.membersBlock,
-            "ՃԱՄՓՈՐԴՈՒԹՅԱՆ ԱՆԴԱՄՆԵՐ (ԼՈՒՍԱՆԿԱՐԻՉՆԵՐ, ՏԵՍԱՆԿԱՐԱՀԱՆՈՂՆԵՐ)",
+            "ՃԱՄՓՈՐԴՈՒԹՅԱՆ ԱՆԴԱՄՆԵՐ (ՆԿԱՐԱՀԱՆՈՂՆԵՐ)",
             "w3-text-green w3-border-bottom w3-border-green submenu_active",
              "subtitleNewMember_id"
             )

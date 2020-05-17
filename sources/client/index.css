@@ -106,3 +106,20 @@ dialog > footer {
     display:table-cell;
     padding:2px;
 }
+.rightAlign{
+    text-align: right;
+}
+.b{
+    font-weight:bold;
+}
+.right_align{
+    text-align:right;
+}
+.am_14{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+}
+.am_12{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12pt;
+}
