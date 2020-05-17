@@ -123,3 +123,7 @@ dialog > footer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12pt;
 }
+
+.menublock{
+background-image: url('./ui/icons/icons.png');
+}
