@@ -10,6 +10,17 @@ export interface NoteShort{
     end_date_time: Date,
     short_description: string
 }
+export interface NoteShort{
+    id:string,
+    journey_id: string,
+    start_date_time: Date,
+    end_date_time?: Date,
+    region?: string,
+    district?: string,
+    settlement?: string,
+    type?: string,
+    name?: string,
+}
 */
 const noteSampleJSON: NoteShort[] = [
     {   

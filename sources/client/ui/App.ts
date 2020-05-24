@@ -1,6 +1,14 @@
 import { Api, Credentials} from "../api/Api";
 import {Menu} from "./views/Menu";
-import {JourneyPage} from "./views/JourneyPage";
+import {JourneyPage} from "./views/journey/JourneyPage";
+import {UserPage} from "./views/user/userPage";
+import {SettingPage} from "./views/setting/settingPage";
+// main content 
+export interface MainPageContent{
+    journeys:JourneyPage,
+    users:UserPage,
+    settings:SettingPage,
+}
 
 export class App {
     api: Api;
@@ -46,31 +54,51 @@ export class App {
 
 class MainView {
     element: HTMLElement;
+    elementHeader:HTMLElement;
+    elementBody:HTMLElement;
     userNameDiv:HTMLDivElement;
     userRoleDiv:HTMLDivElement;
     logoutButton:HTMLButtonElement;
     menu:Menu;
-    page:JourneyPage;
-
+    journeys:JourneyPage;
+    users:UserPage;
+    settings:SettingPage;
+    mainContentObj:MainPageContent;
     onLogout: () => void;
     constructor() {
         this.element = document.getElementById('main') as HTMLElement;
+        this.elementHeader = document.createElement('div') as HTMLElement;
+        this.elementBody = document.createElement('div') as HTMLElement;
+        this.element.appendChild(this.elementHeader);
+        this.element.appendChild(this.elementBody);
         //this.element.innerHTML="<h1>main View</h1>";
         this.userNameDiv = document.getElementById('userNameDiv') as HTMLDivElement;
         this.userRoleDiv = document.getElementById('userRoleDiv') as HTMLDivElement;
         this.logoutButton = document.getElementById('logoutButton') as HTMLButtonElement;
-        //this.menu = new Menu(this.element, 0);
-        this.page = new JourneyPage(this.element) as JourneyPage;
+
+        this.journeys = new JourneyPage(this.elementBody) as JourneyPage;
+        this.users = new UserPage(this.elementBody) as UserPage;
+        this.settings = new SettingPage(this.elementBody) as UserPage;
+        this.journeys.hide();
+        this.users.hide();
+        this.settings.hide()
+        this.mainContentObj = {
+            journeys:this.journeys,
+            users:this.users,
+            settings:this.settings,
+        };
+        //
+        this.menu = new Menu(this.elementHeader, "ՃԱՄՓՈՐԴՈՒԹՅՈՒՆ", this.mainContentObj);
         this.logoutButton.addEventListener('click', () => {
             this.onLogout();
-        })
-    }
+        });
 
+    }
+    //
     setUser(user) {
         this.userNameDiv.innerText = user.name;
         this.userRoleDiv.innerText = user.roles.join(',');
     }
-
     hide() {
         this.element.style.display = 'none';
     }
@@ -82,7 +110,6 @@ class MainView {
 
 //
 class LoginDialog {
-
     element: HTMLDialogElement;
     usernameInput: HTMLInputElement;
     passwordInput: HTMLInputElement;

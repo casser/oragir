@@ -1,3 +1,5 @@
+import tbl_oragir from './data/tbl_oragir'
+
 export interface Credentials {
     username: string,
     password: string
@@ -7,18 +9,19 @@ export interface Geopoint {
     lat: number,
     lon: number
 }
-// for input form of new journey
+//
 /*
-{
-    "jorn_id":"6",
-    "j_name":"Արևմտյան Հայաստան 2010",
-    "country":"Թուրքիա",
-    "date_from":"2010-10-20",
-    "date_to":null,
-    "ph_author":"Սամվել Կարապետյան",
-    "notes":"20.10.2010. Վաղ առավոտյան 16 անդամներից բաղկացած մեր խումբը ճանապարհվեց դեպի Արևմտյան Հայաստան: Սահմանն անցանք բարեհաջող և սովորականի նման գիշերեցինք Արդահանի անտառում:"},
-{
+export interface Journey{
+    jorn_id:number,
+    j_name:string,
+    country:string,
+    ph_author:string,
+    notes:string,
+    date_from:Date,
+    date_to?:Date
+} 
 */
+//
 export interface JourneyShort{
     id: string,
     start_day: Date,
@@ -47,7 +50,7 @@ export interface Journey {
     members?: Array<Member>
 }
 export interface NoteShort{
-    id:string,
+    id: string,
     journey_id: string,
     start_date_time: Date,
     end_date_time: Date,
@@ -68,19 +71,22 @@ export interface NoteInit{
     description?: string
 }
 export interface Note{
-    note_id:string,
-    journey_id: string,
-    start_date_time: Date,
-    end_date_time?: Date,
-    region?: string,
-    district?: string,
-    settlement?: string,
-    type?: string,
-    name?: string,
-    latitude?: number,
-    longitude?: number,
-    description?: string
+    note_id:number,
+    jorn_id:number,
+    region?:string,
+    district?:string,
+    settlement?:string,
+    type?:string,
+    name?:string,
+    description?:string,
+    dateFrom:Date,
+    dateTo:Date,
+    parallel?:number,
+    meridian?:number,
+    userId:number,
+    inputDate:Date
 }
+
 // Journey menbers (authors of Photo/Video)
 export interface Member{
     id?: string,
@@ -99,6 +105,7 @@ export interface Camera{
     tags_photo?: string[];
     tags_video?: string[];
 }
+
 // settings : new user registration/edit form, members list, cameras list, ....other settings
 export class Api {
     url?: URL;
@@ -155,5 +162,9 @@ export class Api {
     }
     async addJourney(journey:JourneyInit):Promise<Journey>{
         return await this.request("POST", '/journeys', null, journey);     
+    }
+    
+    findNodeById(){
+        return tbl_oragir
     }
 }

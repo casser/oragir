@@ -1,0 +1,15 @@
+
+
+.plusBtn{
+    background-image: url('../../icons/plus.png');
+    background-size:contain;
+    width:36px;
+    height:36px;
+}
+
+.minusBtn{
+    background-image: url('../../icons/opened.png');
+    background-size:contain;
+    width:36px;
+    height:36px;
+}

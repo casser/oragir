@@ -552,6 +552,58 @@ export class inputBlock{
     }
 }
 //
+export class inputDateTimeLocalBlock{
+    container:HTMLElement; 
+    name:string; 
+    cssclass:string;
+    id:string;
+    label:string;
+    inputElement:HTMLInputElement;
+    placeholder:string;
+    new_value : string;
+    private pElement:HTMLParagraphElement;
+    private lebelElement:HTMLLabelElement;
+    constructor(container:HTMLElement,
+                name:string,
+                cssclass:string,
+                id:string,
+                label:string,
+                placeholder:string=""
+                ){
+        this.getValue = this.getValue.bind(this);
+        this.container = container;
+        this.name = name;
+        this.cssclass = cssclass;
+        this.id = id;
+        this.label = label;
+        this.placeholder = placeholder;
+        //
+        this.pElement = document.createElement("p") as HTMLParagraphElement;
+        this.container.appendChild(this.pElement);
+        this.lebelElement = document.createElement("label") as HTMLLabelElement;
+        this.lebelElement.innerText = this.label;
+        this.pElement.appendChild(this.lebelElement);
+        //
+        this.inputElement = document.createElement("input") as HTMLInputElement;
+        this.inputElement.setAttribute("type", "datetime-local");
+        this.inputElement.setAttribute("class", this.cssclass);
+        this.inputElement.setAttribute("id", this.id);
+        if(this.placeholder!==""){
+            this.inputElement.placeholder = this.placeholder;
+        }
+        this.pElement.appendChild(this.inputElement);
+        this.inputElement.addEventListener("change", ()=>{
+            this.new_value=this.inputElement.value;
+            console.log(this.new_value);
+        })
+
+    }
+  
+    getValue():string{
+        return this.new_value;
+    }
+}
+//
 export class inputAreaBlock{
     container:HTMLElement; 
     name:string; 

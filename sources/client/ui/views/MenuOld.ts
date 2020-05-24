@@ -1,4 +1,4 @@
-import {newJourneyForm} from "./Journey";
+import {NewJourneyForm} from "./journey/newJourneyForm";
 import {Notes} from "./Notes";
 
 export class Menu{
@@ -19,7 +19,7 @@ export class Menu{
     menuBlockClass:string;
     contentClass:string;
     // forms
-    jform:newJourneyForm;
+    jform:NewJourneyForm;
     nBlock:Notes;
     //
     constructor(parent_container: HTMLElement, 
@@ -62,7 +62,7 @@ export class Menu{
             this.menu_containers[i] = document.createElement("div");
             this.menu_containers[i].setAttribute("class",this.contentClass); // Content
             if(this.menu_titles[i]=="ՃԱՄՓՈՐԴՈՒԹՅՈՒՆ"){
-                this.jform = new newJourneyForm(this.menu_containers[i]);
+                this.jform = new NewJourneyForm(this.menu_containers[i]);
             }
             else if(this.menu_titles[i]=="ՆՇՈՒՄՆԵՐ"){
                 this.nBlock = new Notes(this.menu_containers[i]);
