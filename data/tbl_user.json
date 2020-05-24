@@ -1,0 +1,11 @@
+[
+    {
+        "usr_id": 1,
+        "usr_name": "Armen",
+        "usr_login": "arm",
+        "usr_passw": "arm77",
+        "usr_reg_date": "2020-04-14 13:46:02",
+        "active": "1",
+        "roles":"ADMINISTRATOR"
+    }
+]

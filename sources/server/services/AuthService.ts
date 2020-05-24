@@ -45,7 +45,8 @@ export class AuthService {
         }
     }
     async findUserByUsername(username: string): Promise<User> {
-        const users = await this.db.query("select * from `tbl_user` where `usr_login` = ?", username)
+        //select * from `tbl_user` where `usr_login` = ?
+        const users = await this.db.find('tbl_user', {usr_login:username});
         if (users && users.length == 1) {
             const user = users[0];
             const roles = user.roles.trim();

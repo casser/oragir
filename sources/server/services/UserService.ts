@@ -4,7 +4,7 @@ import { Inject } from "typedi";
 export class UserService {
     @Inject() db: DbService;
     async findUsers() {
-        const users = await this.db.query("select * from `tbl_user`")
+        const users = await this.db.find("tbl_user")
         return users.map(user => {
             const roles = user.roles.trim();
             return {

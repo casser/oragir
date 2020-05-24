@@ -8,4 +8,5 @@ export class ConfigService {
     dbUsername = 'raa';
     dbPassword = 'raa';
     apiSecret = 'server_$ecret:here';
+    dataDir = './data';
 }
