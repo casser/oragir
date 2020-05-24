@@ -1,13 +1,12 @@
-import tbl_oragir from './data/tbl_oragir'
 
 export interface Credentials {
     username: string,
-    password: string
+    password: string;
 }
 // 
 export interface Geopoint {
     lat: number,
-    lon: number
+    lon: number;
 }
 //
 /*
@@ -22,20 +21,20 @@ export interface Journey{
 } 
 */
 //
-export interface JourneyShort{
+export interface JourneyShort {
     id: string,
     start_day: Date,
     end_day?: Date,
     name: string,
 }
-export interface JourneyInit{
+export interface JourneyInit {
     title: string,
     start_day: Date,
     name: string,
     description: string,
     country: string,
     group_head: string,
-    members?: Array<Member>
+    members?: Array<Member>;
 }
 // for search result and editing form of journey
 export interface Journey {
@@ -47,17 +46,17 @@ export interface Journey {
     description: string,
     country: string,
     group_head: string,
-    members?: Array<Member>
+    members?: Array<Member>;
 }
-export interface NoteShort{
+export interface NoteShort {
     id: string,
     journey_id: string,
     start_date_time: Date,
     end_date_time: Date,
-    short_description: string
+    short_description: string;
 }
 // NoteInit, Note
-export interface NoteInit{
+export interface NoteInit {
     journey_id: string,
     start_date_time: Date,
     end_date_time?: Date,
@@ -68,51 +67,53 @@ export interface NoteInit{
     name?: string,
     latitude?: number,
     longitude?: number,
-    description?: string
+    description?: string;
 }
-export interface Note{
-    note_id:number,
-    jorn_id:number,
-    region?:string,
-    district?:string,
-    settlement?:string,
-    type?:string,
-    name?:string,
-    description?:string,
-    dateFrom:Date,
-    dateTo:Date,
-    parallel?:number,
-    meridian?:number,
-    userId:number,
-    inputDate:Date
+export interface Note {
+    note_id: number,
+    jorn_id: number,
+    region?: string,
+    district?: string,
+    settlement?: string,
+    type?: string,
+    name?: string,
+    description?: string,
+    dateFrom: Date,
+    dateTo: Date,
+    parallel?: number,
+    meridian?: number,
+    userId: number,
+    inputDate: Date;
 }
 
 // Journey menbers (authors of Photo/Video)
-export interface Member{
+export interface Member {
     id?: string,
     member: string,
     photocamera?: Array<Camera>,
-    videocamera?: Array<Camera>
+    videocamera?: Array<Camera>;
 }
 // VideoCamera
-export interface Camera{
-    name:string,
-    photo:boolean,
-    video:boolean,
-    model:string,
+export interface Camera {
+    name: string,
+    photo: boolean,
+    video: boolean,
+    model: string,
     owner?: string,
     date_creation_tag?: string,
     tags_photo?: string[];
     tags_video?: string[];
 }
-
+interface User {
+    
+}
 // settings : new user registration/edit form, members list, cameras list, ....other settings
 export class Api {
     url?: URL;
     headers: any;
 
     get token() {
-        return localStorage.token
+        return localStorage.token;
     }
     set token(value) {
         localStorage.token = value;
@@ -128,14 +129,16 @@ export class Api {
     }
     async request(method: string, path: string, params?: object, body?: object) {
         let url = new URL(path, this.url);
-        let headers = {...this.headers};
+        let headers = { ...this.headers };
         if (params) {
             for (let key in params) {
-                url.searchParams.append(key, params[key]);
+                if (typeof params[key] !== undefined) {
+                    url.searchParams.append(key, params[key]);
+                }
             }
         }
-        if(this.token){
-            headers.Authorization = this.token
+        if (this.token) {
+            headers.Authorization = this.token;
         }
         return await fetch(url.href, {
             method,
@@ -143,28 +146,24 @@ export class Api {
             body: body ? JSON.stringify(body) : undefined,
         }).then(r => r.json());
     }
-    async logout(){
-        delete localStorage.token
+    async logout() {
+        delete localStorage.token;
     }
-    async login(credentials:Credentials) {
+    async login(credentials: Credentials) {
         const { token } = await this.request("POST", '/login', null, credentials);
         this.token = token;
         return this.me();
     }
-    async me() {
+    async me(): Promise<User> {
         return await this.request("GET", '/me');
     }
-    async getUsers(){
+    async getUsers() {
         return await this.request("GET", '/users');
     }
-    async getJourneys(){
-        return await this.request("GET", '/journeys');
+    async getJourneys(from?: number, size?: number): Promise<Journey[]> {
+        return await this.request("GET", '/journeys', { from, size });
     }
-    async addJourney(journey:JourneyInit):Promise<Journey>{
-        return await this.request("POST", '/journeys', null, journey);     
-    }
-    
-    findNodeById(){
-        return tbl_oragir
+    async addJourney(journey: JourneyInit): Promise<Journey> {
+        return await this.request("POST", '/journeys', null, journey);
     }
 }

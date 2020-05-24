@@ -3,5 +3,6 @@ dist
 output
 .vscode
 .cache
-
+.pac
+.parcel-cache
 package-lock.json

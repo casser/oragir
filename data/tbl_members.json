@@ -1,15 +1,22 @@
 [
-{"type":"header","version":"5.0.1","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"vid"},
-{"type":"table","name":"tbl_members","database":"vid","data":
-[
-{
-    "member_id":"1",
-    "member":"Աշոտ Հակոբյան"},
-{"member_id":"2","member":"Րաֆֆի Քորթոշյան"},
-{"member_id":"4","member":"Սամվել Կարապետյան"},
-{"member_id":"5","member":"Սահակ Վարդանյան"},
-{"member_id":"6","member":"Սասուն Դանիելյան"}
-]
-}
+    {
+        "member_id": "1",
+        "member": "Աշոտ Հակոբյան"
+    },
+    {
+        "member_id": "2",
+        "member": "Րաֆֆի Քորթոշյան"
+    },
+    {
+        "member_id": "4",
+        "member": "Սամվել Կարապետյան"
+    },
+    {
+        "member_id": "5",
+        "member": "Սահակ Վարդանյան"
+    },
+    {
+        "member_id": "6",
+        "member": "Սասուն Դանիելյան"
+    }
 ]

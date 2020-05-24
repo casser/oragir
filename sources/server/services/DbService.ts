@@ -5,14 +5,19 @@ import { ConfigService } from "./ConfigService";
 import { Inject } from "typedi";
 import { Service } from "typedi";
 
+
+export interface FindOptions {
+    from?: number,
+    size?: number;
+}
 @Service()
 export class DbService {
     async connect() {
 
     }
- 
 
-    async find(tableName: string, query?: any): Promise<any[]> {
+
+    async find(tableName: string, query?: any, options?:FindOptions): Promise<any[]> {
         return [];
     }
 }
@@ -36,17 +41,20 @@ export class DiskDbService extends DbService {
     }
 
     // {username:"gugush"}
-    async find(tableName: string, query?: any): Promise<any[]> {
+    async find(tableName: string, query?: any, options?: FindOptions): Promise<any[]> {
         let data = this.db[tableName];
-        if(query){
-            data = data.filter((current)=>{
-                for(let field in query){
-                    if(query[field]!=current[field]){
+        if (query) {
+            data = data.filter((current) => {
+                for (let field in query) {
+                    if (query[field] != current[field]) {
                         return false;
                     }
                 }
                 return true;
-            })
+            });
+        }
+        if(options){
+            data = data.slice(options.from,options.size)
         }
         return data;
     };
